@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_chat/features/splash_screen/presentation/screen/splash_screen.dart';
+import 'package:mini_chat/features/splash_screen/presentation/views/splash_screen.dart';
+// ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
