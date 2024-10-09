@@ -11,6 +11,12 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+/*************  ✨ Codeium Command ⭐  *************/
+  /// After a 4 second delay, push the [Home] widget onto the top of the
+  /// navigator that most tightly encloses the given [context], and remove all
+  /// the previous routes until the pushed route is the only one left.
+  ///
+  /// ****  01c40b87-ca36-4f1c-b46d-51afefd12db1  ******
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 4)).then((onValue) {
