@@ -9,6 +9,24 @@ class SplashBody extends StatelessWidget {
   SplashBody({super.key, required this.isLoaded});
 
   @override
+/*************  ✨ Codeium Command ⭐  *************/
+  /// Returns a [SafeArea] widget with a [Column] widget as its child. The
+  /// [Column] widget is centered horizontally and vertically in the parent
+  /// [SafeArea] widget.
+  ///
+  /// The [mainAxisAlignment] of the [Column] is set to [MainAxisAlignment.center].
+  ///
+  /// The [crossAxisAlignment] of the [Column] is set to [CrossAxisAlignment.center].
+  ///
+  /// The [children] of the [Column] are a logo, a divider, and a text depending on the
+  /// [isLoaded] parameter.
+  ///
+  /// If [isLoaded] is true, the text is displayed. Otherwise, an empty [SizedBox] is
+  /// displayed instead.
+  ///
+  /// The size of the [SizedBox] is determined by the size of the parent [SafeArea]
+  /// widget.
+/******  49eb92a3-b23a-4dcc-82f9-026028866f49  *******/
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
