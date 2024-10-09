@@ -26,7 +26,7 @@ class SplashBody extends StatelessWidget {
   ///
   /// The size of the [SizedBox] is determined by the size of the parent [SafeArea]
   /// widget.
-/******  49eb92a3-b23a-4dcc-82f9-026028866f49  *******/
+  /// ****  49eb92a3-b23a-4dcc-82f9-026028866f49  ******
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(

@@ -9,7 +9,7 @@ import 'package:mini_chat/core/theme/app_styles.dart';
 /// The text is styled with [AppStyles.textBoldBlack_25] and the color of the second text is [AppColor.primaryColor].
 /// The height of the [SizedBox] between the two texts is 10% of the screen height.
 ///
-/******  0997b24c-64fe-43e0-a42e-df646cb33673  *******/
+/// ****  0997b24c-64fe-43e0-a42e-df646cb33673  ******
 buildTextSplash(BuildContext context) {
   return Column(
     children: [

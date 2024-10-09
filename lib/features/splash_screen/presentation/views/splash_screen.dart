@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mini_chat/features/auth/presentation/view/sign_in/sign_in.dart';
-import 'package:mini_chat/features/home/presentation/views/home.dart';
 import 'package:mini_chat/features/splash_screen/presentation/views/splash_body.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -32,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
   ///
   /// The [MaterialPageRoute] is used to specify the route to use for the
   /// [SignIn] screen.
-/******  efc7ed91-3186-4639-b561-2361ddae18ac  *******/
+  /// ****  efc7ed91-3186-4639-b561-2361ddae18ac  ******
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 1)).then((onValue) {
@@ -63,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
   /// [MaterialApp] widget tree for the splash screen.
   ///
   /// ****  5a6d4f8e-4c7d-4f5c-9a01-6c41b1b4a15a  ******
-/******  804cc5ba-7396-4a6f-8fe4-cf8cc0bc8a9a  *******/
+  /// ****  804cc5ba-7396-4a6f-8fe4-cf8cc0bc8a9a  ******
   Widget build(BuildContext context) {
     return Scaffold(
       body: SplashBody(
