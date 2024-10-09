@@ -4,18 +4,20 @@ import 'package:mini_chat/core/widget/build_auth_button.dart';
 import 'package:mini_chat/core/widget/build_auth_footer.dart';
 import 'package:mini_chat/core/widget/build_custom_divider.dart';
 import 'package:mini_chat/core/widget/build_logo.dart';
-import 'package:mini_chat/features/auth/presentation/view/sign_in/widgets/form_sign_in.dart';
+import 'widgets/form_register.dart';
 
-class SignInBody extends StatefulWidget {
-  const SignInBody({super.key});
+class RegisterBody extends StatefulWidget {
+  const RegisterBody({super.key});
 
   @override
-  State<SignInBody> createState() => _SignInBodyState();
+  State<RegisterBody> createState() => _RegisterBodyState();
 }
 
-class _SignInBodyState extends State<SignInBody> {
+class _RegisterBodyState extends State<RegisterBody> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {
@@ -30,12 +32,12 @@ class _SignInBodyState extends State<SignInBody> {
             buildLogo(context),
             buildCustomDivider(context),
             const Text(
-              'Log in to your account',
+              'Register To New Account',
               style: AppStyles.textBoldBlack_25,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 30),
-              child: buildSignInForm(
+              child: buildRegisterForm(
                 context: context,
                 email: email,
                 password: password,
@@ -52,15 +54,26 @@ class _SignInBodyState extends State<SignInBody> {
                 passValidate: (String? value) {
                   return null;
                 },
+                name: name,
+                phone: phone,
+                nameValidate: (String? v) {
+                  return null;
+                },
+                phoneValidate: (String? v) {
+                  return null;
+                },
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
                 bottom: 30,
               ),
-              child: buildAuthButton(context: context),
+              child: buildAuthButton(
+                context: context,
+                isRegister: true,
+              ),
             ),
-            buildAuthFooter(context: context),
+            buildAuthFooter(context: context, isRegister: true),
           ],
         ),
       ),
