@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mini_chat/features/splash_screen/presentation/views/widgets/whats_app_text.dart';
-import 'package:mini_chat/features/splash_screen/presentation/views/widgets/whats_app_widget.dart';
+import 'package:mini_chat/core/widget/build_custom_divider.dart';
+import 'package:mini_chat/core/widget/build_logo.dart';
+import 'package:mini_chat/features/splash_screen/presentation/views/widgets/build_text_splash.dart';
 
 class SplashBody extends StatelessWidget {
   const SplashBody({super.key});
@@ -12,10 +13,8 @@ class SplashBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          buildWhatsAppIcon(context),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
-          ),
+          buildLogo(context),
+          buildCustomDivider(context),
           buildTextSplash(context),
         ],
       ),

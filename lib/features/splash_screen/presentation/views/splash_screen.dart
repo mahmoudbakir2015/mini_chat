@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_chat/features/auth/presentation/view/sign_in/sign_in.dart';
 import 'package:mini_chat/features/home/presentation/views/home.dart';
 import 'package:mini_chat/features/splash_screen/presentation/views/splash_body.dart';
 
@@ -22,7 +23,9 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 4)).then((onValue) {
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const Home()),
+        MaterialPageRoute(
+          builder: (context) => const SignIn(),
+        ),
         (route) => false,
       );
     });
