@@ -2,6 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:mini_chat/core/widget/build_custom_divider.dart';
 import 'package:mini_chat/core/widget/default_text_form.dart';
 
+/*************  ✨ Codeium Command ⭐  *************/
+/// A form for the register screen.
+///
+/// This form includes fields for name, email, phone and password.
+///
+/// The [name] field is a text field with the label 'enter your name'.
+///
+/// The [email] field is an email address field with the label 'enter your email'.
+///
+/// The [phone] field is a number field with the label 'enter your phone'.
+///
+/// The [password] field is a password field with the label 'enter your password'.
+///
+/// The [isObscure] parameter determines whether the password should be obscured.
+///
+/// The [onTap] parameter is the callback when the suffix icon of the password field is tapped.
+///
+/// The [nameValidate], [emailValidate], [phoneValidate] and [passValidate] parameters are the validation callbacks for the respective fields.
+///
+/// The returned widget is a [Form] widget with all the fields inside a [Column].
+///
+/// The [mainAxisAlignment] of the [Column] is set to [MainAxisAlignment.center].
+///
+/// The [crossAxisAlignment] of the [Column] is set to [CrossAxisAlignment.center].
+///
+/// The [children] of the [Column] are the fields and [buildCustomDivider] widgets.
+///
+/// ****  8954e0f7-16c2-43e7-87ea-8ed6e83dcc08  ******
 Form buildRegisterForm({
   required BuildContext context,
   required dynamic email,

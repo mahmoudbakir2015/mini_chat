@@ -18,6 +18,12 @@ class _SignInBodyState extends State<SignInBody> {
   TextEditingController password = TextEditingController();
   bool isObscure = true;
   @override
+/*************  ✨ Codeium Command ⭐  *************/
+  /// A widget that builds a sign in screen.
+  ///
+  /// This widget includes a logo, a sign in form, an auth button, and a footer.
+  ///
+  /// ****  ed3d5ac0-9679-421c-8d7a-4ffefccd243c  ******
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(30),

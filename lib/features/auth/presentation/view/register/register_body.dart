@@ -20,6 +20,22 @@ class _RegisterBodyState extends State<RegisterBody> {
   TextEditingController phone = TextEditingController();
   bool isObscure = true;
   @override
+/*************  ✨ Codeium Command ⭐  *************/
+  /// Build register screen
+  ///
+  /// This method is used to build register screen
+  ///
+  /// It consist of logo, divider, form register, divider, auth button and auth footer
+  ///
+  /// It used [buildLogo], [buildCustomDivider], [buildRegisterForm], [buildAuthButton],
+  /// and [buildAuthFooter]
+  ///
+  /// It also used [BouncingScrollPhysics] to make the screen can be scrolled
+  ///
+  /// You can change the appearance of the screen by changing the value of
+  /// [email], [password], [isObscure], [name], and [phone]
+
+  /// ****  c8414f9c-55d2-4172-8a8d-5179ecf6ae1c  ******
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(30),
