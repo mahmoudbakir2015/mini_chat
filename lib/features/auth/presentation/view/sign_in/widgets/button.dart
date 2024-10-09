@@ -8,7 +8,7 @@ SizedBox buildButton(BuildContext context) {
     height: MediaQuery.of(context).size.height * 0.066,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.primaryColor,
+        backgroundColor: AppColor.btnColor,
       ),
       onPressed: () {},
       child: Text(

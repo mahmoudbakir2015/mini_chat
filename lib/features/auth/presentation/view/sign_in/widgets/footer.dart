@@ -13,7 +13,7 @@ Row buildFooter(BuildContext context) {
         child: const Text(
           'Register here',
           style: TextStyle(
-            color: AppColor.primaryColor,
+            color: AppColor.btnColor,
           ),
         ),
       ),

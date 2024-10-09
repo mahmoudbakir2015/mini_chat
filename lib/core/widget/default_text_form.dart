@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_chat/core/theme/app_color.dart';
 
 Widget defaultTextForm({
   required String label,
@@ -20,6 +21,17 @@ Widget defaultTextForm({
       obscureText: obscureText,
       keyboardType: textInputType,
       decoration: InputDecoration(
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColor.primaryColor,
+            width: 2.0,
+          ), // Border when focused
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(
+            30.0,
+          ), // Circular border
+        ),
         prefixIcon: Icon(
           iconData,
         ),
@@ -36,7 +48,6 @@ Widget defaultTextForm({
                       ),
               )
             : null,
-        border: const OutlineInputBorder(),
       ),
     );
 void navigateTo({
