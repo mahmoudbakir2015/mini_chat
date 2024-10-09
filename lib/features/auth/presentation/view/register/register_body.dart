@@ -4,26 +4,38 @@ import 'package:mini_chat/core/widget/build_auth_button.dart';
 import 'package:mini_chat/core/widget/build_auth_footer.dart';
 import 'package:mini_chat/core/widget/build_custom_divider.dart';
 import 'package:mini_chat/core/widget/build_logo.dart';
-import 'package:mini_chat/features/auth/presentation/view/sign_in/widgets/form_sign_in.dart';
+import 'widgets/form_register.dart';
 
-class SignInBody extends StatefulWidget {
-  const SignInBody({super.key});
+class RegisterBody extends StatefulWidget {
+  const RegisterBody({super.key});
 
   @override
-  State<SignInBody> createState() => _SignInBodyState();
+  State<RegisterBody> createState() => _RegisterBodyState();
 }
 
-class _SignInBodyState extends State<SignInBody> {
+class _RegisterBodyState extends State<RegisterBody> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
   bool isObscure = true;
   @override
 /*************  ✨ Codeium Command ⭐  *************/
-  /// A widget that builds a sign in screen.
+  /// Build register screen
   ///
-  /// This widget includes a logo, a sign in form, an auth button, and a footer.
+  /// This method is used to build register screen
   ///
-  /// ****  ed3d5ac0-9679-421c-8d7a-4ffefccd243c  ******
+  /// It consist of logo, divider, form register, divider, auth button and auth footer
+  ///
+  /// It used [buildLogo], [buildCustomDivider], [buildRegisterForm], [buildAuthButton],
+  /// and [buildAuthFooter]
+  ///
+  /// It also used [BouncingScrollPhysics] to make the screen can be scrolled
+  ///
+  /// You can change the appearance of the screen by changing the value of
+  /// [email], [password], [isObscure], [name], and [phone]
+
+  /// ****  c8414f9c-55d2-4172-8a8d-5179ecf6ae1c  ******
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(30),
@@ -36,12 +48,12 @@ class _SignInBodyState extends State<SignInBody> {
             buildLogo(context),
             buildCustomDivider(context),
             const Text(
-              'Log in to your account',
+              'Register To New Account',
               style: AppStyles.textBoldBlack_25,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 30),
-              child: buildSignInForm(
+              child: buildRegisterForm(
                 context: context,
                 email: email,
                 password: password,
@@ -58,15 +70,26 @@ class _SignInBodyState extends State<SignInBody> {
                 passValidate: (String? value) {
                   return null;
                 },
+                name: name,
+                phone: phone,
+                nameValidate: (String? v) {
+                  return null;
+                },
+                phoneValidate: (String? v) {
+                  return null;
+                },
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
                 bottom: 30,
               ),
-              child: buildAuthButton(context: context),
+              child: buildAuthButton(
+                context: context,
+                isRegister: true,
+              ),
             ),
-            buildAuthFooter(context: context),
+            buildAuthFooter(context: context, isRegister: true),
           ],
         ),
       ),
