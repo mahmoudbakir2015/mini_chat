@@ -3,8 +3,10 @@ import 'package:mini_chat/core/widget/build_custom_divider.dart';
 import 'package:mini_chat/core/widget/build_logo.dart';
 import 'package:mini_chat/features/splash_screen/presentation/views/widgets/build_text_splash.dart';
 
+// ignore: must_be_immutable
 class SplashBody extends StatelessWidget {
-  const SplashBody({super.key});
+  bool isLoaded;
+  SplashBody({super.key, required this.isLoaded});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class SplashBody extends StatelessWidget {
         children: [
           buildLogo(context),
           buildCustomDivider(context),
-          buildTextSplash(context),
+          isLoaded ? buildTextSplash(context) : const SizedBox(),
         ],
       ),
     );

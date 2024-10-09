@@ -11,6 +11,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool isLoaded = false;
   @override
 /*************  ✨ Codeium Command ⭐  *************/
   /// After a 4 second delay, push the [Home] widget onto the top of the
@@ -20,6 +21,11 @@ class _SplashScreenState extends State<SplashScreen> {
   /// ****  01c40b87-ca36-4f1c-b46d-51afefd12db1  ******
   void initState() {
     super.initState();
+    Future.delayed(const Duration(seconds: 1)).then((onValue) {
+      setState(() {
+        isLoaded = true;
+      });
+    });
     Future.delayed(const Duration(seconds: 4)).then((onValue) {
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushAndRemoveUntil(
@@ -33,8 +39,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SplashBody(),
+    return Scaffold(
+      body: SplashBody(
+        isLoaded: isLoaded,
+      ),
     );
   }
 }
