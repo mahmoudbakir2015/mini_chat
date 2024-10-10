@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/theme/app_color.dart';
 import 'package:mini_chat/core/theme/app_styles.dart';
+import 'package:mini_chat/features/whats/presentation/views/whats_view.dart';
 
 /*************  ✨ Codeium Command ⭐  *************/
 /// A function to build a button for logging in or signing up.
@@ -16,9 +17,15 @@ SizedBox buildAuthButton(
     height: MediaQuery.of(context).size.height * 0.066,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.btnColor,
+        backgroundColor: AppColor.primaryColor,
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const WhatsView(),
+          ),
+        );
+      },
       child: Text(
         isRegister ? 'Sign Up' : 'Log In',
         style: AppStyles.textBoldBlack_25.copyWith(
