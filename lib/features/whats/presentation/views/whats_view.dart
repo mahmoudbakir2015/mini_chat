@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/theme/app_styles.dart';
-import 'package:mini_chat/features/whats/presentation/views/chats_view.dart';
+import 'package:mini_chat/features/whats/presentation/views/chats/chats_view.dart';
 
 class WhatsView extends StatefulWidget {
   const WhatsView({super.key});
