@@ -27,7 +27,7 @@ Row buildSignInFooter(BuildContext context) {
         child: const Text(
           'Register here',
           style: TextStyle(
-            color: AppColor.btnColor,
+            color: AppColor.primaryColor,
           ),
         ),
       ),

@@ -49,7 +49,7 @@ Row buildAuthFooter({required BuildContext context, bool isRegister = false}) {
         child: Text(
           isRegister ? 'Login here' : 'Register here',
           style: const TextStyle(
-            color: AppColor.btnColor,
+            color: AppColor.primaryColor,
           ),
         ),
       ),

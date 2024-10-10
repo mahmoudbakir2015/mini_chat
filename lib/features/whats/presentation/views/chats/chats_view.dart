@@ -9,7 +9,7 @@ class ChatsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildBodyChat(),
-      floatingActionButton: buildFloatingChat(),
+      floatingActionButton: buildFloatingChat(onPressed: () {}),
     );
   }
 }
