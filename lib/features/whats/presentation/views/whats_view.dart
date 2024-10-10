@@ -12,6 +12,19 @@ class WhatsView extends StatefulWidget {
 
 class _WhatsViewState extends State<WhatsView> {
   @override
+/*************  ✨ Codeium Command ⭐  *************/
+  /// Returns a [DefaultTabController] widget with a [Scaffold] widget as its
+  /// child.
+  ///
+  /// The [Scaffold] widget contains a [CustomAppBar] widget as its app bar, and
+  /// a [TabBarView] widget as its body. The [TabBarView] widget contains three
+  /// children: [ChatsView], [StatusView], and a [Text] widget with the text
+  /// 'Calls'. The [DefaultTabController] widget is used to manage the state of
+  /// the tabs in the [TabBarView].
+  ///
+  /// The [DefaultTabController] widget returned by this method is the root of
+  /// the [MaterialApp] widget tree for the whats screen.
+  /// ****  900ace99-63ca-46d8-972d-6bae716ae955  ******
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
