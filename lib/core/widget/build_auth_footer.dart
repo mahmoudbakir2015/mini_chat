@@ -23,10 +23,12 @@ import 'package:mini_chat/features/auth/presentation/view/sign_in/sign_in.dart';
 /// ****  8b2737ae-cd0d-4965-9d2c-2dd272f979c8  ******
 Row buildAuthFooter({required BuildContext context, bool isRegister = false}) {
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Text(isRegister
           ? 'Already have an account?'
-          : ''''Dont't have an account?'''),
+          : '''Dont't have an account?'''),
       SizedBox(
         width: MediaQuery.of(context).size.width * 0.04,
       ),
@@ -47,7 +49,7 @@ Row buildAuthFooter({required BuildContext context, bool isRegister = false}) {
         child: Text(
           isRegister ? 'Login here' : 'Register here',
           style: const TextStyle(
-            color: AppColor.btnColor,
+            color: AppColor.primaryColor,
           ),
         ),
       ),
