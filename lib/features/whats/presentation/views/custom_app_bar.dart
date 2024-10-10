@@ -5,10 +5,13 @@ import 'package:mini_chat/features/whats/presentation/views/build_app_bar_icon.d
 
 AppBar buildCustomAppBar(BuildContext context) {
   return AppBar(
-    leadingWidth: MediaQuery.of(context).size.width * 0.25,
-    leading: const Text(
-      'WhatsUp',
-      style: AppStyles.textBoldBlack_25,
+    leadingWidth: MediaQuery.of(context).size.width * 0.4,
+    leading: const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      child: Text(
+        'WhatsUp',
+        style: AppStyles.textBoldBlack_25,
+      ),
     ),
     actions: [
       buildAvatar(
