@@ -11,13 +11,11 @@ ListTile buildOtherStatus({
   return ListTile(
     leading: CircleAvatar(
       radius: 30,
-      backgroundColor: isViewed
-          ? Colors.transparent
-          : AppColor.secondaryColor, // Green border
+      backgroundColor: isViewed ? Colors.grey : AppColor.secondaryColor,
       child: CircleAvatar(
         radius: 26,
         backgroundImage: NetworkImage(
-          image, // Replace with actual profile image
+          image,
         ),
       ),
     ),

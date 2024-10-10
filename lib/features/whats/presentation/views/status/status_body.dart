@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_chat/core/constants/app_assets.dart';
 import 'package:mini_chat/features/whats/presentation/views/status/widgets/my_status.dart';
 import 'package:mini_chat/features/whats/presentation/views/status/widgets/other_status.dart';
 import 'package:mini_chat/features/whats/presentation/views/status/widgets/text_light.dart';
@@ -11,7 +12,7 @@ SingleChildScrollView buildStatusBody() {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         buildMyStatus(
-          image: 'https://via.placeholder.com/150',
+          image: AppAssets.imageTest,
           onTap: () {},
         ),
         buildTextLight(text: 'Recent Updates'),
@@ -21,7 +22,7 @@ SingleChildScrollView buildStatusBody() {
           itemCount: 5,
           itemBuilder: (context, index) {
             return buildOtherStatus(
-              image: 'https://via.placeholder.com/150',
+              image: AppAssets.imageTest,
               name: 'Kristin Watson',
               time: '3 hours ago',
               onTap: () {},
@@ -36,7 +37,7 @@ SingleChildScrollView buildStatusBody() {
           itemCount: 5,
           itemBuilder: (context, index) {
             return buildOtherStatus(
-              image: 'https://via.placeholder.com/150',
+              image: AppAssets.imageTest,
               name: 'Kristin Watson',
               time: '3 hours ago',
               onTap: () {},

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_chat/core/constants/app_assets.dart';
 import 'package:mini_chat/features/whats/presentation/views/chats/widgets/tile_card_info_chat.dart';
 
 ListView buildBodyChat() {
@@ -12,7 +13,7 @@ ListView buildBodyChat() {
         ),
         child: buildTileCardInfo(
           context: context,
-          image: '',
+          image: AppAssets.imageTest,
           name: 'Mahmoud bakir',
           lastMessage: 'hello',
           time: '12:20 PM',

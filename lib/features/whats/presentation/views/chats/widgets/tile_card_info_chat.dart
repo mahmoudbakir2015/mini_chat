@@ -11,6 +11,7 @@ ListTile buildTileCardInfo({
   return ListTile(
     leading: CircleAvatar(
       radius: MediaQuery.of(context).size.width * 0.1,
+      backgroundImage: NetworkImage(image),
     ),
     title: Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
