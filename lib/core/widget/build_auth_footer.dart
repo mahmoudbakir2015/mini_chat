@@ -23,6 +23,8 @@ import 'package:mini_chat/features/auth/presentation/view/sign_in/sign_in.dart';
 /// ****  8b2737ae-cd0d-4965-9d2c-2dd272f979c8  ******
 Row buildAuthFooter({required BuildContext context, bool isRegister = false}) {
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Text(isRegister
           ? 'Already have an account?'
