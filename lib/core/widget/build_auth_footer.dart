@@ -28,7 +28,7 @@ Row buildAuthFooter({required BuildContext context, bool isRegister = false}) {
     children: [
       Text(isRegister
           ? 'Already have an account?'
-          : ''''Dont't have an account?'''),
+          : '''Dont't have an account?'''),
       SizedBox(
         width: MediaQuery.of(context).size.width * 0.04,
       ),
