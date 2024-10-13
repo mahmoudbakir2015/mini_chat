@@ -30,7 +30,7 @@ Widget defaultTextForm({
   required TextEditingController controller,
   bool obscureText = false,
   required TextInputType textInputType,
-  required IconData iconData,
+  required IconData? iconData,
   bool isSuffix = false,
   void Function(String)? onSubmitted,
   void Function(String)? onChange,
