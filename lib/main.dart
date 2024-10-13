@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_chat/features/splash_screen/presentation/views/splash_screen.dart';
+import 'package:mini_chat/features/profile/presentation/views/profile.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: "Mini What's App ",
-      home: const SplashScreen(),
+      home: const Profile(),
     );
   }
 }
