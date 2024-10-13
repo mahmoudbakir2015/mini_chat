@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/constants/app_assets.dart';
+import 'package:mini_chat/core/theme/app_color.dart';
 import 'package:mini_chat/core/widget/build_stack_avatar.dart';
 import 'package:mini_chat/features/profile/presentation/views/widgets/profile_app_bar.dart';
 import 'package:mini_chat/features/profile/presentation/views/widgets/profile_form.dart';
+import 'package:mini_chat/features/profile/presentation/views/widgets/profile_save_button.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -28,6 +30,12 @@ class Profile extends StatelessWidget {
                 ),
               ),
               buildProfileForm(name, phone),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 30,
+                ),
+                child: buildSaveProfileButton(context),
+              ),
             ],
           ),
         ),
