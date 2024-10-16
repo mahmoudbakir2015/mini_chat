@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/utils/observer.dart';
-import 'package:mini_chat/features/profile/presentation/views/profile.dart';
+import 'package:mini_chat/features/chat/presentation/views/chat.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: "Mini What's App ",
-      home: const Profile(),
+      home: const Chat(),
     );
   }
 }

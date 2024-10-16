@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_chat/features/whats/presentation/views/chats/chats_view.dart';
+import 'package:mini_chat/features/whats/presentation/views/chats_card/chats_view_cards.dart';
 import 'package:mini_chat/features/whats/presentation/views/custom_app_bar.dart';
 import 'package:mini_chat/features/whats/presentation/views/status/status_view.dart';
 

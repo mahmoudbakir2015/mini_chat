@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/constants/app_assets.dart';
-import 'package:mini_chat/features/whats/presentation/views/chats/widgets/tile_card_info_chat.dart';
+import 'package:mini_chat/features/whats/presentation/views/chats_card/widgets/tile_card_info_chat.dart';
 
 /*************  ✨ Codeium Command ⭐  *************/
 /// A function that builds a list of chat cards.

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_chat/features/whats/presentation/views/chats/chat_body.dart';
-import 'package:mini_chat/features/whats/presentation/views/chats/widgets/floating_chat.dart';
+import 'package:mini_chat/features/whats/presentation/views/chats_card/chat_body_cards.dart';
+import 'package:mini_chat/features/whats/presentation/views/chats_card/widgets/floating_chat.dart';
 
 class ChatsView extends StatelessWidget {
   const ChatsView({super.key});
