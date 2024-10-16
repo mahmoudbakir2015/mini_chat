@@ -50,8 +50,7 @@ class ChatBody extends StatelessWidget {
               // var message = messages[index];
               return const ChatBubble(
                 isMe: true,
-                message:
-                    'fffgfgfgdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
+                message: 'djijfjdf',
                 time: '14:37',
               );
 

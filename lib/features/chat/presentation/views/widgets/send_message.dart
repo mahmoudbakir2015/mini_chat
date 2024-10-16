@@ -1,7 +1,8 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/theme/app_color.dart';
 
-Widget senderMessage() {
+Widget senderMessage({required BuildContext context}) {
   return Container(
     padding: const EdgeInsets.all(8),
     color: Colors.white,
@@ -10,7 +11,15 @@ Widget senderMessage() {
         // Smiley Icon
         IconButton(
           icon: const Icon(Icons.emoji_emotions_outlined, color: Colors.grey),
-          onPressed: () {},
+          onPressed: () {
+            // BottomSheet(
+            //   builder: (BuildContext context) {
+            //     return const BuildEmoji();
+            //   },
+            //   onClosing: () {},
+            // );
+            log('ssss');
+          },
         ),
         // Text Field
         Expanded(

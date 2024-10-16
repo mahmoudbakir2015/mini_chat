@@ -19,7 +19,7 @@ class Chat extends StatelessWidget {
       backgroundColor: AppColor.chatBackgroundColor,
       appBar: buildChatAppBar(context: context),
       body: const ChatBody(),
-      bottomNavigationBar: senderMessage(),
+      bottomNavigationBar: senderMessage(context: context),
     );
   }
 }

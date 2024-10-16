@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/theme/app_color.dart';
 
-class ChatBubble extends StatelessWidget {
+class ChatBubble extends StatefulWidget {
   final String message;
   final String time;
   final bool isMe;
@@ -13,10 +13,17 @@ class ChatBubble extends StatelessWidget {
       required this.isMe});
 
   @override
+  State<ChatBubble> createState() => _ChatBubbleState();
+}
+
+class _ChatBubbleState extends State<ChatBubble> {
+  bool isEmojiVisible = false;
+  @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment:
-          isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          widget.isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         Container(
           constraints: BoxConstraints(
@@ -24,8 +31,8 @@ class ChatBubble extends StatelessWidget {
           ),
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           decoration: BoxDecoration(
-            color: isMe ? AppColor.recieverCardColor : Colors.white,
-            borderRadius: isMe
+            color: widget.isMe ? AppColor.recieverCardColor : Colors.white,
+            borderRadius: widget.isMe
                 ? const BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     topLeft: Radius.circular(30),
@@ -43,7 +50,7 @@ class ChatBubble extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  message,
+                  widget.message,
                   softWrap: true, // Ensures text wraps to the next line
                   style: const TextStyle(
                     fontSize: 16,
@@ -51,9 +58,9 @@ class ChatBubble extends StatelessWidget {
                   ),
                 ),
               ),
-              Row(children: [
+              Row(mainAxisSize: MainAxisSize.min, children: [
                 Text(
-                  time,
+                  widget.time,
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey[600],
