@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_chat/core/theme/app_color.dart';
+import 'package:mini_chat/core/constants/app_assets.dart';
+import 'package:mini_chat/core/widget/build_stack_avatar.dart';
 
 /*************  ✨ Codeium Command ⭐  *************/
 /// A [ListTile] for the "My Status" item in the status page.
@@ -15,28 +16,7 @@ import 'package:mini_chat/core/theme/app_color.dart';
 /// ****  72bada56-38b3-4973-a255-babdea6d3311  ******
 ListTile buildMyStatus({required String image, void Function()? onTap}) {
   return ListTile(
-    leading: Stack(
-      children: [
-        CircleAvatar(
-          radius: 30,
-          backgroundImage: NetworkImage(
-            image,
-          ),
-        ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppColor.secondaryColor,
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 2),
-            ),
-            child: const Icon(Icons.add, size: 20, color: Colors.white),
-          ),
-        ),
-      ],
-    ),
+    leading: buildStackAvatar(image: AppAssets.imageTest),
     title:
         const Text('My Status', style: TextStyle(fontWeight: FontWeight.bold)),
     subtitle: const Text('Tap to add status update'),

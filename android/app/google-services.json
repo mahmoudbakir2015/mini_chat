@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "533011232275",
+    "project_id": "mini-whats-49bbe",
+    "storage_bucket": "mini-whats-49bbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533011232275:android:cf7854aea7cca76b02b1e6",
+        "android_client_info": {
+          "package_name": "com.example.mini_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC_laq1uU_1lisnbKagK2QTZbCyzbWLgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
