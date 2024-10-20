@@ -4,6 +4,7 @@ import 'package:mini_chat/core/widget/build_auth_button.dart';
 import 'package:mini_chat/core/widget/build_auth_footer.dart';
 import 'package:mini_chat/core/widget/build_custom_divider.dart';
 import 'package:mini_chat/core/widget/build_logo.dart';
+import 'package:mini_chat/features/whats/presentation/views/whats_view.dart';
 import 'widgets/form_register.dart';
 
 class RegisterBody extends StatefulWidget {
@@ -87,6 +88,13 @@ class _RegisterBodyState extends State<RegisterBody> {
               child: buildAuthButton(
                 context: context,
                 isRegister: true,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const WhatsView(),
+                    ),
+                  );
+                },
               ),
             ),
             buildAuthFooter(context: context, isRegister: true),

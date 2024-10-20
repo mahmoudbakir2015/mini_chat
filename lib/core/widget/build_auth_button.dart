@@ -11,7 +11,9 @@ import 'package:mini_chat/features/whats/presentation/views/whats_view.dart';
 /// The style of the button is [AppStyles.textBoldBlack_25] with a font size of 20.
 /// ****  43f01cd1-bf35-4631-95b3-9fd3778dda43  ******
 SizedBox buildAuthButton(
-    {required BuildContext context, bool isRegister = false}) {
+    {required BuildContext context,
+    bool isRegister = false,
+    required void Function()? onPressed}) {
   return SizedBox(
     width: double.infinity,
     height: MediaQuery.of(context).size.height * 0.066,
@@ -19,13 +21,7 @@ SizedBox buildAuthButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColor.primaryColor,
       ),
-      onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const WhatsView(),
-          ),
-        );
-      },
+      onPressed: onPressed,
       child: Text(
         isRegister ? 'Sign Up' : 'Log In',
         style: AppStyles.textBoldBlack_25.copyWith(
