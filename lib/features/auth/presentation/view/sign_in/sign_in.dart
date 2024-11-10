@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_chat/features/auth/data/view_model/auth_cubit.dart';
 import 'package:mini_chat/features/auth/presentation/view/sign_in/sign_in_body.dart';
 
 class SignIn extends StatefulWidget {
@@ -25,9 +27,12 @@ class _SignInState extends State<SignIn> {
   ///
   /// ****  ae688296-d2aa-4d2c-8a17-715d524fa0e1  ******
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: SignInBody(),
+    return BlocProvider(
+      create: (_) => AuthCubit(),
+      child: const Scaffold(
+        body: Center(
+          child: SignInBody(),
+        ),
       ),
     );
   }

@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "533011232275",
     "project_id": "mini-whats-49bbe",
-    "storage_bucket": "mini-whats-49bbe.appspot.com"
+    "storage_bucket": "mini-whats-49bbe.firebasestorage.app"
   },
   "client": [
     {
@@ -12,7 +12,12 @@
           "package_name": "com.example.mini_chat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "533011232275-ce9givj4n234khohqgrp95p5m3on6r3s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAC_laq1uU_1lisnbKagK2QTZbCyzbWLgc"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533011232275-ce9givj4n234khohqgrp95p5m3on6r3s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
