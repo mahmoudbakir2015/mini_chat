@@ -38,12 +38,14 @@ Form buildRegisterForm({
   required dynamic password,
   required bool isObscure,
   void Function()? onTap,
-  required String? Function(String? v)? emailValidate,
-  required String? Function(String? v)? passValidate,
-  required String? Function(String? v)? nameValidate,
-  required String? Function(String? v)? phoneValidate,
+  required String? Function(String? v) emailValidate,
+  required String? Function(String? v) passValidate,
+  required String? Function(String? v) nameValidate,
+  required String? Function(String? v) phoneValidate,
+  required Key? registerFormKey,
 }) {
   return Form(
+    key: registerFormKey,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mini_chat/features/auth/data/view_model/auth_cubit.dart';
 import 'package:mini_chat/features/auth/presentation/view/register/register_body.dart';
 
 class Register extends StatelessWidget {

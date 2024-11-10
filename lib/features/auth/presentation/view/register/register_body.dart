@@ -8,7 +8,6 @@ import 'package:mini_chat/core/widget/build_logo.dart';
 import 'package:mini_chat/features/auth/data/model/auth_model.dart';
 import 'package:mini_chat/features/auth/data/view_model/auth_cubit.dart';
 import 'package:mini_chat/features/auth/data/view_model/auth_states.dart';
-import 'package:mini_chat/features/whats/presentation/views/whats_view.dart';
 import 'widgets/form_register.dart';
 
 // ignore: must_be_immutable
@@ -35,7 +34,15 @@ class RegisterBody extends StatelessWidget {
 
   /// ****  c8414f9c-55d2-4172-8a8d-5179ecf6ae1c  ******
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthStates>(
+    return BlocConsumer<AuthCubit, AuthStates>(
+      listener: (BuildContext context, AuthStates state) {
+        if (state is RegisterFailure) {
+          authCubit.showInSnackBar(
+            context: context,
+            value: state.error,
+          );
+        }
+      },
       bloc: authCubit,
       builder: (context, state) => Padding(
         padding: const EdgeInsets.all(30),
@@ -57,48 +64,42 @@ class RegisterBody extends StatelessWidget {
                   context: context,
                   email: authCubit.emailController,
                   password: authCubit.passwordController,
+                  name: authCubit.nameControler,
+                  phone: authCubit.phoneControler,
                   isObscure: authCubit.isObscure,
                   onTap: () {
                     authCubit.isObscure = !authCubit.isObscure;
                   },
-                  emailValidate: (String? value) {
-                    return null;
-                  },
-                  passValidate: (String? value) {
-                    return null;
-                  },
-                  name: authCubit.nameControler,
-                  phone: authCubit.phoneControler,
-                  nameValidate: (String? v) {
-                    return null;
-                  },
-                  phoneValidate: (String? v) {
-                    return null;
-                  },
+                  emailValidate: authCubit.emailValidate,
+                  passValidate: authCubit.passwordValidate,
+                  nameValidate: authCubit.nameValidate,
+                  phoneValidate: authCubit.phoneNumberValidate,
+                  registerFormKey: authCubit.authFormKey,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
                   bottom: 30,
                 ),
-                child: buildAuthButton(
-                  context: context,
-                  isRegister: true,
-                  onPressed: () {
-                    authCubit
-                        .signUp(
-                            authModel: AuthModel(
-                          email: authCubit.emailController.text,
-                          password: authCubit.passwordController.text,
-                        ))
-                        // ignore: use_build_context_synchronously
-                        .then((value) => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const WhatsView(),
+                child: (state is AuthLoading)
+                    ? const CircularProgressIndicator()
+                    : buildAuthButton(
+                        context: context,
+                        isRegister: true,
+                        onPressed: () {
+                          if (authCubit.authFormKey.currentState!.validate()) {
+                            authCubit.signUp(
+                              authModel: AuthModel(
+                                email: authCubit.emailController.text,
+                                password: authCubit.passwordController.text,
+                                name: authCubit.nameControler.text,
+                                phone: authCubit.phoneControler.text,
                               ),
-                            ));
-                  },
-                ),
+                              context: context,
+                            );
+                            // ignore: use_build_context_synchronously
+                          }
+                        }),
               ),
               buildAuthFooter(context: context, isRegister: true),
             ],

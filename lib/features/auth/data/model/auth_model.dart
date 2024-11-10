@@ -1,7 +1,7 @@
 class AuthModel {
   final String email;
-  String? name = 'Name';
-  String? phone = '01010000000';
+  String? name;
+  String? phone;
   final String password;
   AuthModel({
     required this.email,
