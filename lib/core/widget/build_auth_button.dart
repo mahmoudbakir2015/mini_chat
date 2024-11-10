@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/theme/app_color.dart';
 import 'package:mini_chat/core/theme/app_styles.dart';
-import 'package:mini_chat/features/whats/presentation/views/whats_view.dart';
 
 /*************  ✨ Codeium Command ⭐  *************/
 /// A function to build a button for logging in or signing up.
