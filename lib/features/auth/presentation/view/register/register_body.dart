@@ -12,9 +12,7 @@ import 'widgets/form_register.dart';
 
 // ignore: must_be_immutable
 class RegisterBody extends StatelessWidget {
-  RegisterBody({super.key});
-
-  AuthCubit authCubit = AuthCubit();
+  const RegisterBody({super.key});
 
   @override
 /*************  ✨ Codeium Command ⭐  *************/
@@ -34,6 +32,7 @@ class RegisterBody extends StatelessWidget {
 
   /// ****  c8414f9c-55d2-4172-8a8d-5179ecf6ae1c  ******
   Widget build(BuildContext context) {
+    AuthCubit authCubit = AuthCubit();
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (BuildContext context, AuthStates state) {
         if (state is RegisterFailure) {

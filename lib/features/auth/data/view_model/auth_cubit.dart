@@ -77,6 +77,31 @@ class AuthCubit extends Cubit<AuthStates> {
     return null; // لا يوجد خطأ، كلمة المرور صحيحة
   }
 
+  Future<void> login(
+      {required AuthModel authModel, required BuildContext context}) async {
+    emit(AuthLoading());
+    try {
+      await _auth
+          .signInWithEmailAndPassword(
+        email: authModel.email,
+        password: authModel.password,
+      )
+          .then((onValue) {
+        emit(SignInSuccess());
+        log("User login Succssed: ${onValue.user!.email}");
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const WhatsView(),
+          ),
+        );
+      });
+    } catch (e) {
+      emit(SignInFailure(error: e.toString()));
+      // Handle errors here (e.g., show error message)
+      log('failed login ${e.toString()}');
+    }
+  }
+
   Future<void> signUp(
       {required AuthModel authModel, required BuildContext context}) async {
     emit(AuthLoading());
@@ -108,7 +133,7 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(ShowSnackBar());
     final snackBar = SnackBar(
       content: Text(value),
-      duration: const Duration(seconds: 2), // تحديد مدة عرض الـSnackBar
+      duration: const Duration(seconds: 3), // تحديد مدة عرض الـSnackBar
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
