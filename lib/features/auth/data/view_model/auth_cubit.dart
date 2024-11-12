@@ -133,7 +133,7 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(ShowSnackBar());
     final snackBar = SnackBar(
       content: Text(value),
-      duration: const Duration(seconds: 2), // تحديد مدة عرض الـSnackBar
+      duration: const Duration(seconds: 3), // تحديد مدة عرض الـSnackBar
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
