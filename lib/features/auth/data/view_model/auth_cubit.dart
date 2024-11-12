@@ -112,4 +112,9 @@ class AuthCubit extends Cubit<AuthStates> {
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
+  void showPassword() {
+    isObscure = !isObscure;
+    emit(ShowPassswordSuccess());
+  }
 }

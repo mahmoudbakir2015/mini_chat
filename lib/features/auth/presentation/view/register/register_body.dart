@@ -67,9 +67,7 @@ class RegisterBody extends StatelessWidget {
                   name: authCubit.nameControler,
                   phone: authCubit.phoneControler,
                   isObscure: authCubit.isObscure,
-                  onTap: () {
-                    authCubit.isObscure = !authCubit.isObscure;
-                  },
+                  onTap: authCubit.showPassword,
                   emailValidate: authCubit.emailValidate,
                   passValidate: authCubit.passwordValidate,
                   nameValidate: authCubit.nameValidate,
