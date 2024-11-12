@@ -13,7 +13,10 @@ class RegisterFailure extends AuthStates {
 
 class SignInSuccess extends AuthStates {}
 
-class SignInFailure extends AuthStates {}
+class SignInFailure extends AuthStates {
+  final String error;
+  SignInFailure({required this.error});
+}
 
 class SignOutSuccess extends AuthStates {}
 
