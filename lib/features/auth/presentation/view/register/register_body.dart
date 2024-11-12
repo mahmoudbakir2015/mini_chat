@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_chat/core/theme/app_styles.dart';
 import 'package:mini_chat/core/widget/build_auth_button.dart';
 import 'package:mini_chat/core/widget/build_auth_footer.dart';
 import 'package:mini_chat/core/widget/build_custom_divider.dart';
 import 'package:mini_chat/core/widget/build_logo.dart';
-import 'package:mini_chat/features/whats/presentation/views/whats_view.dart';
+import 'package:mini_chat/features/auth/data/model/auth_model.dart';
+import 'package:mini_chat/features/auth/data/view_model/auth_cubit.dart';
+import 'package:mini_chat/features/auth/data/view_model/auth_states.dart';
 import 'widgets/form_register.dart';
 
-class RegisterBody extends StatefulWidget {
-  const RegisterBody({super.key});
+// ignore: must_be_immutable
+class RegisterBody extends StatelessWidget {
+  RegisterBody({super.key});
 
-  @override
-  State<RegisterBody> createState() => _RegisterBodyState();
-}
+  AuthCubit authCubit = AuthCubit();
 
-class _RegisterBodyState extends State<RegisterBody> {
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController name = TextEditingController();
-  TextEditingController phone = TextEditingController();
-  bool isObscure = true;
   @override
 /*************  ✨ Codeium Command ⭐  *************/
   /// Build register screen
@@ -38,67 +34,74 @@ class _RegisterBodyState extends State<RegisterBody> {
 
   /// ****  c8414f9c-55d2-4172-8a8d-5179ecf6ae1c  ******
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(30),
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            buildLogo(context),
-            buildCustomDivider(context),
-            const Text(
-              'Register To New Account',
-              style: AppStyles.textBoldBlack_25,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              child: buildRegisterForm(
-                context: context,
-                email: email,
-                password: password,
-                isObscure: isObscure,
-                onTap: () {
-                  isObscure = !isObscure;
-                  setState(
-                    () {},
-                  );
-                },
-                emailValidate: (String? value) {
-                  return null;
-                },
-                passValidate: (String? value) {
-                  return null;
-                },
-                name: name,
-                phone: phone,
-                nameValidate: (String? v) {
-                  return null;
-                },
-                phoneValidate: (String? v) {
-                  return null;
-                },
+    return BlocConsumer<AuthCubit, AuthStates>(
+      listener: (BuildContext context, AuthStates state) {
+        if (state is RegisterFailure) {
+          authCubit.showInSnackBar(
+            context: context,
+            value: state.error,
+          );
+        }
+      },
+      bloc: authCubit,
+      builder: (context, state) => Padding(
+        padding: const EdgeInsets.all(30),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              buildLogo(context),
+              buildCustomDivider(context),
+              const Text(
+                'Register To New Account',
+                style: AppStyles.textBoldBlack_25,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                bottom: 30,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                child: buildRegisterForm(
+                  context: context,
+                  email: authCubit.emailController,
+                  password: authCubit.passwordController,
+                  name: authCubit.nameControler,
+                  phone: authCubit.phoneControler,
+                  isObscure: authCubit.isObscure,
+                  onTap: authCubit.showPassword,
+                  emailValidate: authCubit.emailValidate,
+                  passValidate: authCubit.passwordValidate,
+                  nameValidate: authCubit.nameValidate,
+                  phoneValidate: authCubit.phoneNumberValidate,
+                  registerFormKey: authCubit.authFormKey,
+                ),
               ),
-              child: buildAuthButton(
-                context: context,
-                isRegister: true,
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const WhatsView(),
-                    ),
-                  );
-                },
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 30,
+                ),
+                child: (state is AuthLoading)
+                    ? const CircularProgressIndicator()
+                    : buildAuthButton(
+                        context: context,
+                        isRegister: true,
+                        onPressed: () {
+                          if (authCubit.authFormKey.currentState!.validate()) {
+                            authCubit.signUp(
+                              authModel: AuthModel(
+                                email: authCubit.emailController.text,
+                                password: authCubit.passwordController.text,
+                                name: authCubit.nameControler.text,
+                                phone: authCubit.phoneControler.text,
+                              ),
+                              context: context,
+                            );
+                            // ignore: use_build_context_synchronously
+                          }
+                        }),
               ),
-            ),
-            buildAuthFooter(context: context, isRegister: true),
-          ],
+              buildAuthFooter(context: context, isRegister: true),
+            ],
+          ),
         ),
       ),
     );

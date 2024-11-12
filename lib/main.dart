@@ -6,9 +6,9 @@ import 'package:mini_chat/features/auth/presentation/view/sign_in/sign_in.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }

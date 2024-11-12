@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mini_chat/features/auth/presentation/view/register/register_body.dart';
 
-class Register extends StatefulWidget {
+class Register extends StatelessWidget {
   const Register({super.key});
 
-  @override
-  State<Register> createState() => _RegisterState();
-}
-
-class _RegisterState extends State<Register> {
   @override
 /*************  ✨ Codeium Command ⭐  *************/
   /// Returns a [Scaffold] widget with a [Center] widget as its body. The
@@ -27,7 +22,7 @@ class _RegisterState extends State<Register> {
   /// [MaterialApp] widget tree for the registration screen.
   /// ****  d6e90c9a-bb3b-4986-a1f6-315787a5858e  ******
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: RegisterBody(),
       ),
