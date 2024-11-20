@@ -8,6 +8,7 @@ import 'package:mini_chat/features/auth/data/model/auth_model.dart';
 import 'package:mini_chat/features/auth/data/view_model/auth_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mini_chat/features/whats/presentation/views/whats_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitial());
@@ -54,9 +55,9 @@ class AuthCubit extends Cubit<AuthStates> {
     }
 
     // استخدام RegExp للتحقق من أن الرقم مكون من 10 أرقام
-    final phoneRegex = RegExp(r'^[0-9]{10}$');
+    final phoneRegex = RegExp(r'^01[0125][0-9]{8}$');
     if (!phoneRegex.hasMatch(value)) {
-      return 'Please enter a valid phone number (10 digits)';
+      return 'Please enter a valid phone number (11 digits)';
     }
 
     return null; // لا يوجد خطأ، رقم الهاتف صحيح
@@ -113,13 +114,16 @@ class AuthCubit extends Cubit<AuthStates> {
         password: authModel.password,
       )
           .then((onValue) {
-        emit(RegisterSuccess());
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const WhatsView(),
-          ),
-        );
-        log("User registered: ${onValue.user!.email}");
+        addUser(authModel: authModel).then((value) {
+          emit(RegisterSuccess());
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const WhatsView(),
+            ),
+          );
+          log("User registered: ${onValue.user!.email}");
+        });
+
         return onValue;
       });
       // حساب المستخدم تم إنشاؤه بنجاح
@@ -141,5 +145,22 @@ class AuthCubit extends Cubit<AuthStates> {
   void showPassword() {
     isObscure = !isObscure;
     emit(ShowPassswordSuccess());
+  }
+}
+
+addUser({required AuthModel authModel}) async {
+  // Reference to Firestore
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  try {
+    // Create or update a document in the "users" collection
+    await firestore.collection('users').doc().set({
+      'name': authModel.name,
+      'email': authModel.email,
+      'photo': authModel.image,
+    });
+    log('User added/updated successfully');
+  } catch (e) {
+    log('Error adding user: $e');
   }
 }
