@@ -2,11 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:z/controller/cubit/chat/chat_states.dart';
-import '../../../data/model/message_model.dart';
+import 'package:mini_chat/features/chat/data/view_model/chat_states.dart';
 
-class ChatCubit extends Cubit<ChatStates> {
-  ChatCubit() : super(InitialChatState());
+class ChatCubit extends Cubit<ChateStates> {
+  ChatCubit() : super(InitialState());
   static ChatCubit get(context) => BlocProvider.of(context);
   CollectionReference chats = FirebaseFirestore.instance.collection('chats');
   TextEditingController messagesController = TextEditingController();
