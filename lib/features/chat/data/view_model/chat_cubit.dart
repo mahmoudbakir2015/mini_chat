@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:mini_chat/features/chat/data/model/message_model.dart';
 import 'package:mini_chat/features/chat/data/view_model/chat_states.dart';
 
 class ChatCubit extends Cubit<ChateStates> {
@@ -15,7 +16,7 @@ class ChatCubit extends Cubit<ChateStates> {
       DocumentReference docRef = chats
           .doc(messageModel.senderId)
           .collection('chats')
-          .doc(messageModel.reciverId);
+          .doc(messageModel.receiverId);
       await FirebaseFirestore.instance.runTransaction(
         (transaction) async {
           DocumentSnapshot snapshot = await transaction.get(docRef);
@@ -27,7 +28,7 @@ class ChatCubit extends Cubit<ChateStates> {
                   'image': messageModel.image,
                   'date': DateFormat.jm().format(DateTime.now()).toString(),
                   'senderId': messageModel.senderId,
-                  'recieverId': messageModel.reciverId,
+                  'recieverId': messageModel.receiverId,
                 }
               ]
             });
@@ -39,7 +40,7 @@ class ChatCubit extends Cubit<ChateStates> {
                 'image': messageModel.image,
                 'date': DateFormat.jm().format(DateTime.now()).toString(),
                 'senderId': messageModel.senderId,
-                'recieverId': messageModel.reciverId,
+                'recieverId': messageModel.receiverId,
               },
             );
             transaction.update(docRef, {'messages': messages});
@@ -47,7 +48,7 @@ class ChatCubit extends Cubit<ChateStates> {
         },
       ).then((onValue) async {
         DocumentReference docRef = chats
-            .doc(messageModel.reciverId)
+            .doc(messageModel.receiverId)
             .collection('chats')
             .doc(messageModel.senderId);
         await FirebaseFirestore.instance.runTransaction(
@@ -61,7 +62,7 @@ class ChatCubit extends Cubit<ChateStates> {
                     'image': messageModel.image,
                     'date': DateFormat.jm().format(DateTime.now()).toString(),
                     'senderId': messageModel.senderId,
-                    'recieverId': messageModel.reciverId,
+                    'recieverId': messageModel.receiverId,
                   }
                 ]
               });
@@ -73,7 +74,7 @@ class ChatCubit extends Cubit<ChateStates> {
                   'image': messageModel.image,
                   'date': DateFormat.jm().format(DateTime.now()).toString(),
                   'senderId': messageModel.senderId,
-                  'recieverId': messageModel.reciverId,
+                  'recieverId': messageModel.receiverId,
                 },
               );
               transaction.update(docRef, {'messages': messages});
