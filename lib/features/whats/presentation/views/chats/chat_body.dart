@@ -25,7 +25,8 @@ import 'package:mini_chat/features/whats/presentation/views/chats/widgets/tile_c
 /// - [notSeen]: The number of unseen messages. If null, the message is not seen.
 /// ****  81e9d690-ad3d-4a93-8b70-7c7debe17302  ******
 buildBodyChat() {
-  return BlocBuilder<ChatCubit, ChatStates>(
+  return BlocBuilder<ChatCubit, ChatState>(
+    bloc: ChatCubit(),
     builder: (context, state) => StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('chats')

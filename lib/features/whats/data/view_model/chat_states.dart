@@ -1,13 +1,12 @@
-abstract class ChatStates {}
+abstract class ChatState {}
 
-class InitialState extends ChatStates {}
+class ChatInitial extends ChatState {}
 
-class SendMessageSuccessedState extends ChatStates {}
+class ChatSending extends ChatState {}
 
-class SendMessageFailedState extends ChatStates {}
+class ChatSentSuccess extends ChatState {}
 
-class GetMessageSuccessedState extends ChatStates {}
-
-class ScrollSuccessedState extends ChatStates {}
-
-class GetMessageFailedState extends ChatStates {}
+class ChatSentFailure extends ChatState {
+  final String error;
+  ChatSentFailure(this.error);
+}

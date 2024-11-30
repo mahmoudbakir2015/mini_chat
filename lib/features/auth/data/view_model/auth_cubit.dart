@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_chat/core/utils/shared_pref.dart';
 import 'package:mini_chat/features/auth/data/model/auth_model.dart';
 import 'package:mini_chat/features/auth/data/view_model/auth_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -114,7 +115,8 @@ class AuthCubit extends Cubit<AuthStates> {
         password: authModel.password,
       )
           .then((onValue) {
-        addUser(authModel: authModel).then((value) {
+        addUser(authModel: authModel, id: onValue.user!.uid).then((value) {
+          CacheHelper.saveData(key: 'id', value: onValue.user!.uid);
           emit(RegisterSuccess());
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -148,7 +150,7 @@ class AuthCubit extends Cubit<AuthStates> {
   }
 }
 
-addUser({required AuthModel authModel}) async {
+addUser({required AuthModel authModel, required String id}) async {
   // Reference to Firestore
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -158,6 +160,7 @@ addUser({required AuthModel authModel}) async {
       'name': authModel.name,
       'email': authModel.email,
       'photo': authModel.image,
+      'id': id,
     });
     log('User added/updated successfully');
   } catch (e) {

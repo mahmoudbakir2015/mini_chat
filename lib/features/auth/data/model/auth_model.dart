@@ -3,6 +3,7 @@ class AuthModel {
   String? name;
   String? phone;
   String? image;
+
   final String password;
   AuthModel({
     required this.email,

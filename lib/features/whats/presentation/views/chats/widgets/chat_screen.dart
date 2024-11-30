@@ -1,92 +1,119 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mini_chat/features/whats/data/model/message_model.dart';
 import 'package:mini_chat/features/whats/data/view_model/chat_cubit.dart';
 import 'package:mini_chat/features/whats/data/view_model/chat_states.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatScreen extends StatelessWidget {
-  final String senderId;
+  final String name;
   final String receiverId;
-
-  ChatScreen({super.key, required this.senderId, required this.receiverId});
-
   final TextEditingController _messageController = TextEditingController();
+
+  ChatScreen({super.key, required this.receiverId, required this.name});
 
   @override
   Widget build(BuildContext context) {
-    ChatCubit chatCubit = ChatCubit();
-    return BlocBuilder<ChatCubit, ChatStates>(
-      bloc: chatCubit,
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('Chat with $receiverId'),
-          ),
-          body: Column(
-            children: [
-              Expanded(
-                child: StreamBuilder<List<MessageModel>>(
-                  stream: chatCubit.getMessages(senderId, receiverId),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
+    return Scaffold(
+      appBar: AppBar(title: Text('Chat with $name')),
+      body: BlocProvider(
+        create: (context) => ChatCubit(),
+        child: Column(
+          children: [
+            // عرض الرسائل
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('messages')
+                    .where('senderId', whereIn: [
+                      FirebaseAuth.instance.currentUser?.uid,
+                      receiverId
+                    ])
+                    .where('receiverId', whereIn: [
+                      FirebaseAuth.instance.currentUser?.uid,
+                      receiverId
+                    ])
+                    .orderBy('timestamp', descending: true)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  }
+                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                    return Center(child: Text('No messages found.'));
+                  }
 
-                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return Center(child: Text('No messages yet.'));
-                    }
+                  var messages = snapshot.data!.docs;
 
-                    final messages = snapshot.data!;
+                  return ListView.builder(
+                    reverse: true,
+                    itemCount: messages.length,
+                    itemBuilder: (context, index) {
+                      var data = messages[index];
+                      bool isMe = data['senderId'] ==
+                          FirebaseAuth.instance.currentUser?.uid;
 
-                    return ListView.builder(
-                      reverse: true, // To show the latest message at the bottom
-                      itemCount: messages.length,
-                      itemBuilder: (context, index) {
-                        final message = messages[index];
-
-                        return ListTile(
-                          title: Text(message.text.toString()),
-                          subtitle: Text('Sent by: ${message.senderId}'),
-                        );
-                      },
-                    );
-                  },
-                ),
+                      return ListTile(
+                        title: Text(data['text']),
+                        subtitle: Text(isMe ? 'You' : 'Friend'),
+                        trailing: isMe ? Icon(Icons.check) : null,
+                      );
+                    },
+                  );
+                },
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _messageController,
-                        decoration: InputDecoration(hintText: 'Type a message'),
+            ),
+            // حقل النص وزر الإرسال
+            BlocConsumer<ChatCubit, ChatState>(
+              listener: (context, state) {
+                if (state is ChatSentSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Message Sent!')),
+                  );
+                } else if (state is ChatSentFailure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                        content:
+                            Text('Failed to send message: ${state.error}')),
+                  );
+                }
+              },
+              builder: (context, state) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _messageController,
+                          decoration:
+                              InputDecoration(labelText: 'Enter message...'),
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.send),
-                      onPressed: () {
-                        final message = MessageModel(
-                          text: _messageController.text,
-                          image: '', // You can add image functionality
-                          senderId: senderId,
-                          receiverId: receiverId,
-                          timestamp: Timestamp.now().toString(),
-                        );
-                        chatCubit.sendMessage(
-                            messageModel:
-                                message); // Call your sendMessage function here
-                        _messageController.clear();
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+                      IconButton(
+                        icon: state is ChatSending
+                            ? CircularProgressIndicator()
+                            : Icon(Icons.send),
+                        onPressed: () {
+                          if (_messageController.text.isNotEmpty) {
+                            // إرسال الرسالة
+                            BlocProvider.of<ChatCubit>(context).sendMessage(
+                                _messageController.text, receiverId);
+                            _messageController.clear();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

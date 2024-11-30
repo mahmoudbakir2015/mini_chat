@@ -2,11 +2,13 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_chat/core/utils/observer.dart';
+import 'package:mini_chat/core/utils/shared_pref.dart';
 import 'package:mini_chat/features/auth/presentation/view/sign_in/sign_in.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
+  CacheHelper.init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
