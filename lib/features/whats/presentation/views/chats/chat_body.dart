@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_chat/core/constants/app_assets.dart';
+import 'package:mini_chat/features/whats/data/view_model/chat_cubit.dart';
+import 'package:mini_chat/features/whats/data/view_model/chat_states.dart';
 import 'package:mini_chat/features/whats/presentation/views/chats/widgets/tile_card_info_chat.dart';
 
 /*************  ✨ Codeium Command ⭐  *************/
@@ -20,24 +24,47 @@ import 'package:mini_chat/features/whats/presentation/views/chats/widgets/tile_c
 /// - [time]: The time the last message was sent at.
 /// - [notSeen]: The number of unseen messages. If null, the message is not seen.
 /// ****  81e9d690-ad3d-4a93-8b70-7c7debe17302  ******
-ListView buildBodyChat() {
-  return ListView.builder(
-    physics: const BouncingScrollPhysics(),
-    itemCount: 10,
-    itemBuilder: (context, index) {
-      return Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height * 0.01,
-        ),
-        child: buildTileCardInfo(
-          context: context,
-          image: AppAssets.imageTest,
-          name: 'Mahmoud bakir',
-          lastMessage: 'hello',
-          time: '12:20 PM',
-          notSeen: null,
-        ),
-      );
-    },
+buildBodyChat() {
+  return BlocBuilder<ChatCubit, ChatStates>(
+    builder: (context, state) => StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('chats')
+            .where('participants',
+                arrayContains: 'currentUserId') // Replace with the user ID
+            .orderBy('lastMessageTime', descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Center(child: Text("No chats available!"));
+          }
+
+          final chats = snapshot.data!.docs;
+
+          return ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              var chat = chats[index];
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).size.height * 0.01,
+                ),
+                child: buildTileCardInfo(
+                  context: context,
+                  image: AppAssets
+                      .imageTest, // Replace with chat participant's image
+                  name: chat.id, // Replace with chat participant's name
+                  lastMessage: chat['lastMessage'],
+                  time: chat['lastMessageTime'].toDate().toString(),
+                  notSeen: chat['unreadCount'].toString(),
+                ),
+              );
+            },
+          );
+        }),
   );
 }

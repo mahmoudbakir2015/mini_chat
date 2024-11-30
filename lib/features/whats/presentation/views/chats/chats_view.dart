@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_chat/features/whats/data/view_model/chat_cubit.dart';
 import 'package:mini_chat/features/whats/presentation/views/chats/chat_body.dart';
 import 'package:mini_chat/features/whats/presentation/views/chats/widgets/floating_chat.dart';
 
@@ -18,9 +20,12 @@ class ChatsView extends StatelessWidget {
   /// ****  5f7f5b9e-4b9c-4eb1-b3c4-15f3f4a1abf2  ****
   /// ****  c258f311-8d90-43c4-8da3-7d6249fbfac8  ******
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: buildBodyChat(),
-      floatingActionButton: buildFloatingChat(onPressed: () {}),
+    return BlocProvider(
+      create: (_) => ChatCubit(),
+      child: Scaffold(
+        body: buildBodyChat(),
+        floatingActionButton: buildFloatingChat(onPressed: () {}),
+      ),
     );
   }
 }

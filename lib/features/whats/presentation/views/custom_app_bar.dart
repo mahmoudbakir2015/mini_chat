@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_chat/core/theme/app_color.dart';
 import 'package:mini_chat/core/theme/app_styles.dart';
 import 'package:mini_chat/features/whats/presentation/views/build_app_bar_icon.dart';
+import 'package:mini_chat/features/whats/presentation/views/chats/search_view.dart';
 
 /*************  ✨ Codeium Command ⭐  *************/
 /// A custom app bar for the app that contains a logo, a search bar, and a tab bar.
@@ -32,7 +33,13 @@ AppBar buildCustomAppBar(BuildContext context) {
       buildAvatar(
         context: context,
         icon: Icons.search,
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const SearchView(),
+            ),
+          );
+        },
       ),
       buildAvatar(
         context: context,

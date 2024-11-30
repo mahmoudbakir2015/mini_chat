@@ -14,7 +14,11 @@ class _ChatsScreenState extends State<ChatsScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Center(child: Text('Chat Screen')),
+        Center(
+          child: Text(
+            'Chat Screen',
+          ),
+        ),
       ],
     );
   }
