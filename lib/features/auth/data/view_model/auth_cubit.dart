@@ -156,7 +156,7 @@ addUser({required AuthModel authModel, required String id}) async {
 
   try {
     // Create or update a document in the "users" collection
-    await firestore.collection('users').doc().set({
+    await firestore.collection('users').doc(id).set({
       'name': authModel.name,
       'email': authModel.email,
       'photo': authModel.image,

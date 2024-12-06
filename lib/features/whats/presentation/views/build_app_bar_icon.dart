@@ -21,7 +21,7 @@ import 'package:mini_chat/core/theme/app_color.dart';
 /// ****  b9416a6a-7f33-4c7a-b946-063090bc461b  ******
 buildAvatar(
     {required BuildContext context,
-    required IconData? icon,
+    required Widget? widget,
     void Function()? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(
@@ -38,11 +38,7 @@ buildAvatar(
             8,
           ),
         ),
-        child: Icon(
-          icon,
-          size: 30,
-          color: AppColor.secondaryColor,
-        ),
+        child: widget,
       ),
     ),
   );

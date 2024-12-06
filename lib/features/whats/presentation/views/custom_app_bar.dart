@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_chat/core/theme/app_color.dart';
 import 'package:mini_chat/core/theme/app_styles.dart';
 import 'package:mini_chat/features/whats/presentation/views/build_app_bar_icon.dart';
+import 'package:mini_chat/features/whats/presentation/views/friends/friends.dart';
 import 'package:mini_chat/features/whats/presentation/views/search/search_view.dart';
 
 /*************  ✨ Codeium Command ⭐  *************/
@@ -32,7 +33,10 @@ AppBar buildCustomAppBar(BuildContext context) {
     actions: [
       buildAvatar(
         context: context,
-        icon: Icons.search,
+        widget: Icon(
+          Icons.search,
+          color: AppColor.primaryColor,
+        ),
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -43,8 +47,32 @@ AppBar buildCustomAppBar(BuildContext context) {
       ),
       buildAvatar(
         context: context,
-        icon: Icons.filter_list,
-        onTap: () {},
+        widget: PopupMenuButton<String>(
+          color: AppColor.primaryColor,
+          onSelected: (value) {
+            options(options: value, context: context);
+            // عندما يتم اختيار عنصر من القائمة
+          },
+          itemBuilder: (BuildContext context) {
+            return [
+              PopupMenuItem<String>(
+                value: 'Profile',
+                child: buildTextList(text: 'Profile'),
+              ),
+              PopupMenuItem<String>(
+                value: 'Show Friends',
+                child: buildTextList(text: 'Show Friends'),
+              ),
+              PopupMenuItem<String>(
+                value: 'Sign Out',
+                child: buildTextList(
+                  text: 'Sign Out',
+                  isSignOut: true,
+                ),
+              ),
+            ];
+          },
+        ),
       ),
     ],
     bottom: const TabBar(
@@ -64,4 +92,24 @@ AppBar buildCustomAppBar(BuildContext context) {
           ),
         ]),
   );
+}
+
+Text buildTextList({required String text, bool isSignOut = false}) => Text(
+      text,
+      style: TextStyle(color: isSignOut ? Colors.red : Colors.white),
+    );
+
+options({required String options, required BuildContext context}) {
+  switch (options) {
+    case 'Profile':
+      // do something
+      break;
+    case 'Show Friends':
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => FriendsPage()));
+      break;
+    case 'Sign Out':
+      // do something else
+      break;
+  }
 }

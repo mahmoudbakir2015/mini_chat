@@ -16,7 +16,7 @@ FloatingActionButton buildFloatingChat({required void Function()? onPressed}) {
     backgroundColor: AppColor.secondaryColor,
     onPressed: onPressed,
     child: const Icon(
-      Icons.chat,
+      Icons.person,
       color: Colors.white,
     ),
   );
