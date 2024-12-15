@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_chat/features/whats/data/view_model/chat_cubit.dart';
-import 'package:mini_chat/features/whats/presentation/views/chats/widgets/chat_screen.dart';
+import 'package:mini_chat/features/whats/presentation/views/chats/chat_screen_view.dart';
 
 ChatCubit chatCubit = ChatCubit();
 StreamBuilder<List<Map<String, dynamic>>> buildBodyOfListOfChat() {

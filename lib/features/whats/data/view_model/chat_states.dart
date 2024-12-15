@@ -4,9 +4,11 @@ class ChatInitial extends ChatState {}
 
 class ChatSending extends ChatState {}
 
-class ChatSentSuccess extends ChatState {}
+class MessageSentSuccessed extends ChatState {}
 
-class ChatSentFailure extends ChatState {
+class MessageSentFailed extends ChatState {
   final String error;
-  ChatSentFailure(this.error);
+  MessageSentFailed(this.error);
 }
+
+class ChangeStateEmojiVisible extends ChatState {}

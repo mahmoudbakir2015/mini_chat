@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mini_chat/features/whats/presentation/views/chats/widgets/chat_screen.dart';
+import 'package:mini_chat/features/whats/presentation/views/chats/chat_screen_view.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({super.key});
